@@ -30,7 +30,7 @@ export function UserPicture({ url, size = 'size-sm' }: UserPictureProps) {
         alt="Profile Image"
         width={72}
         height={72}
-        className={`h-fit w-fit rounded-full `}
+        className={`h-full w-full rounded-full `}
       />
     </div>
   )

@@ -6,7 +6,7 @@ interface HeaderProps {
 
 export function Header({ children }: HeaderProps) {
   return (
-    <header className="flex flex-1 items-center justify-between py-14">
+    <header className="flex w-full flex-1 items-center justify-between py-14">
       {children}
     </header>
   )
