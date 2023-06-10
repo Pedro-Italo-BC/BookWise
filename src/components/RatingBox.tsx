@@ -27,7 +27,6 @@ export function RatingBox({
   userName,
   hasHeader = true,
 }: RatingBoxProps) {
-  console.log(coverUrl)
   return (
     <div className="flex w-[608px] cursor-pointer flex-col gap-8 rounded-lg bg-gray-700 p-5 pl-6 transition duration-200 ease-in-out hover:bg-gray-600">
       {hasHeader && (

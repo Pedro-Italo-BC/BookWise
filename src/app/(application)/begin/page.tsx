@@ -41,7 +41,7 @@ export default async function Begin() {
     favoritesBooksResponse.data.favoritesBooksQuery
 
   return (
-    <main className="mx-auto">
+    <main className="mx-auto pb-12">
       <Header>
         <div className="flex items-center gap-3">
           <AiOutlineLineChart color="#50B2C0" size={26} />
@@ -50,7 +50,7 @@ export default async function Begin() {
       </Header>
 
       <main className="flex gap-16">
-        <div className="flex flex-col gap-10 pb-12">
+        <div className="flex flex-col gap-10">
           <BoxContent title="Avaliações mais recentes">
             {ratingResponseData.map((rateItem) => {
               return (

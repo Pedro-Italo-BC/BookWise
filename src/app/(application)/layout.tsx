@@ -16,7 +16,7 @@ function BA() {
 export default function AppLayout({ children }: { children: ReactNode }) {
   return (
     <div className="flex h-screen gap-24 py-6 pl-5 pr-24">
-      <aside className="aside-bg fixed z-10 flex h-[900px] min-h-[92%] min-w-[232px] flex-col items-center justify-between rounded-xl  bg-gray-700 pb-6 pt-10">
+      <aside className="aside-bg fixed z-0 flex h-[92%] max-h-[900px] min-w-[232px] flex-col items-center justify-between rounded-xl  bg-gray-700 bg-no-repeat pb-6 pt-10">
         <div className="flex flex-col gap-16">
           <Image src={bkLogo} alt="book wise logo" />
 
