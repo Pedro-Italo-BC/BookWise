@@ -1,31 +1,31 @@
 import { prisma } from '@/lib/prisma'
 import { NextResponse } from 'next/server'
 
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url)
-
-  const bookId = searchParams.get('book_id')
-
-  if (!bookId) {
+export async function GET(
+  request: Request,
+  { params }: { params: { book_id: string } },
+) {
+  if (!params.book_id) {
     throw new Error('There is no book id.')
   }
 
-  const ratings = await prisma.$queryRaw`
-  SELECT 
-    r.created_at as rateCreatedAt,
-    r.rate as rate,
-    r.id as rateId,
-    u.name as userName,
-    u.avatar_url as userAvatar
-    r.description as rateDescription
-  FROM ratings r
-  INNER JOIN books b
-    ON b.id = r.book_id 
-  INNER JOIN users u
-    ON u.id = r.user_id
-  WHERE b.id = ${bookId}
-  ORDER BY r.created_at DESC
-`
+  const ratings = await prisma.rating.findMany({
+    where: {
+      book_id: params.book_id,
+    },
+    select: {
+      user: {
+        select: {
+          image: true,
+          name: true,
+        },
+      },
+      created_at: true,
+      description: true,
+      id: true,
+      rate: true,
+    },
+  })
 
   return NextResponse.json({ ratings })
 }

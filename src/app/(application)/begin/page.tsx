@@ -69,11 +69,19 @@ export default async function Begin() {
             })}
           </BoxContent>
         </div>
-        <div className="w-[324px]">
-          <BoxContent title="Livros populares" seeAll={true}>
+        <div className="w-[20.25rem]">
+          <BoxContent
+            title="Livros populares"
+            button={{
+              type: 'link',
+              link: '/explorer',
+              title: 'Ver todos >',
+            }}
+          >
             {favoritesBooksData.map((bookItem) => {
               return (
                 <BookButton
+                  bookId={bookItem.id}
                   author={bookItem.author}
                   img={bookItem.cover_url}
                   rate={getRatingMediaFunction(bookItem.ratings)}

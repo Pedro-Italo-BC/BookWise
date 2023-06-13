@@ -39,7 +39,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
 
         <LoginoutButton />
       </aside>
-      <div className="ml-[328px] flex-1">
+      <div className="ml-[20.5rem] flex-1">
         <Suspense fallback={<BA />}>{children}</Suspense>
       </div>
     </div>

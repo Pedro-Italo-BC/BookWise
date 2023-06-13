@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
 import './globals.css'
 import { Nunito } from 'next/font/google'
+import { Provider } from '@/components/Provider'
 
 const nunito = Nunito({ subsets: ['latin'] })
 
@@ -13,7 +14,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className={`${nunito.className} bg-gray-800 text-gray-100`}>
-        {children}
+        <Provider>{children}</Provider>
       </body>
     </html>
   )

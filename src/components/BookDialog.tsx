@@ -4,6 +4,7 @@ import { StarsRate } from './StarsRate'
 
 import { FaRegBookmark } from 'react-icons/fa'
 import { GoBook } from 'react-icons/go'
+import { BookRatingComponent } from './BookRatingComponent'
 
 interface BookDialogProps {
   id: string
@@ -18,7 +19,7 @@ interface BookDialogProps {
   ratingAmount: number
 }
 
-export function BookDialog({
+export async function BookDialog({
   author,
   categories,
   coverUrl,
@@ -29,17 +30,17 @@ export function BookDialog({
   ratingAmount,
 }: BookDialogProps) {
   return (
-    <section>
+    <section className="flex flex-col gap-10">
       <main className="flex w-full flex-col gap-6 rounded-xl bg-gray-700 px-8 py-6">
         <div className="flex gap-8 border-b border-gray-600 pb-10">
           <Image
             src={coverUrl}
             width={171}
             height={242}
-            className="h-[242px] w-[171px]"
+            className="h-[15.125rem] w-[10.6875rem]"
             alt={'livro ' + name}
           />
-          <div className="flex h-[242px] flex-col justify-between">
+          <div className="flex h-[15.125rem] flex-col justify-between">
             <header>
               <h2 className="mb-2 text-lg font-bold text-gray-100">{name}</h2>
               <p className="text-base font-normal text-gray-300">{author}</p>
@@ -55,7 +56,7 @@ export function BookDialog({
           </div>
         </div>
         <footer className="flex items-center gap-14">
-          <div className="flex w-[219px] items-center gap-4">
+          <div className="flex w-[13.6875rem] items-center gap-4">
             <FaRegBookmark size={24} color="#50B2C0" />
             <div>
               <p className="text-sm font-normal text-gray-300">Categoria</p>
@@ -81,6 +82,7 @@ export function BookDialog({
           </div>
         </footer>
       </main>
+      <BookRatingComponent bookId={id} />
     </section>
   )
 }

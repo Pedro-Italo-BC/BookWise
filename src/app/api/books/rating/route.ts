@@ -12,7 +12,7 @@ export async function GET() {
     b.summary as bookSummary,
     b.cover_url as bookCover,
     u.name as userName,
-    u.avatar_url as userAvatar
+    u.image as userAvatar
   FROM ratings r
   INNER JOIN books b
     ON b.id = r.book_id 

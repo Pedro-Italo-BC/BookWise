@@ -21,7 +21,7 @@ export default function Home() {
         draggable={false}
       />
 
-      <div className="mx-auto flex w-[372px] flex-col gap-10">
+      <div className="mx-auto flex w-[23.25rem] flex-col gap-10">
         <header>
           <h1 className="text-2xl font-bold">Boas vindas!</h1>
           <p className="text-base font-normal text-gray-200">
@@ -29,7 +29,7 @@ export default function Home() {
           </p>
         </header>
         <main className="flex w-full flex-col gap-4">
-          <ButtonProvider>
+          <ButtonProvider provider="google">
             <Image
               src={GoogleIcon}
               alt="Google Icon"
@@ -40,7 +40,7 @@ export default function Home() {
             Entrar com Google
           </ButtonProvider>
 
-          <ButtonProvider>
+          <ButtonProvider provider="github">
             <Image
               src={GithubIcon}
               alt="Google Icon"
@@ -51,7 +51,7 @@ export default function Home() {
             Entrar com Github
           </ButtonProvider>
 
-          <ButtonProvider>
+          <ButtonProvider provider="visit">
             <RxRocket className="text-purple-100" size={32} />
             Acessar como visitante
           </ButtonProvider>

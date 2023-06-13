@@ -32,7 +32,7 @@ export function SearchBar() {
 
   return (
     <form
-      className={`flex w-[433px] justify-between rounded-md border px-5 py-3 transition duration-200 ease-in-out ${
+      className={`flex w-[27.0625rem] justify-between rounded-md border px-5 py-3 transition duration-200 ease-in-out ${
         focus ? 'border-green-200' : 'border-gray-500'
       }`}
       onSubmit={handleSearchBooks}

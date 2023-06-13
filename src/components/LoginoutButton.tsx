@@ -1,39 +1,35 @@
+'use client'
+
 import { UserPicture } from './UserPicture'
 
 import { FiLogOut, FiLogIn } from 'react-icons/fi'
 
-import exampleImg from '../assets/aa.jpg'
-
-interface LogininoutButtonProps {
-  name: string
-  profileUrl: string
-}
-
-function ButtonLoged({ name, profileUrl }: LogininoutButtonProps) {
-  return (
-    <button className="flex items-center gap-3">
-      <UserPicture url={profileUrl} size="size-sm" />
-      <p>Cristofer</p>
-      <FiLogOut color="#F75A68" size={20} />
-    </button>
-  )
-}
-
-function ButtonNotLoged() {
-  return (
-    <button className="flex items-center gap-3">
-      <p>Fazer Login</p>
-      <FiLogIn color="#50B2C0" size={20} />
-    </button>
-  )
-}
+import { signOut, useSession } from 'next-auth/react'
+import { ProviderButtonDialog } from './ProviderButtonDialog'
 
 export function LoginoutButton() {
-  const isLoged = false
+  const session = useSession()
 
-  return isLoged ? (
-    <ButtonLoged name={'aaaa'} profileUrl={exampleImg} />
+  return session.status === 'authenticated' ? (
+    <button
+      className="flex items-center gap-3"
+      onClick={() => signOut({ callbackUrl: `${window.location.origin}` })}
+    >
+      <UserPicture url={session.data.user?.image as string} size="size-sm" />
+      <p>{session.data.user?.name as string}</p>
+      <FiLogOut color="#F75A68" size={20} />
+    </button>
   ) : (
-    <ButtonNotLoged />
+    <ProviderButtonDialog>
+      <button
+        disabled={session.status === 'loading'}
+        className={`flex items-center gap-3 ${
+          session.status === 'loading' && 'cursor-not-allowed brightness-50'
+        }`}
+      >
+        <p>Fazer Login</p>
+        <FiLogIn color="#50B2C0" size={20} />
+      </button>
+    </ProviderButtonDialog>
   )
 }

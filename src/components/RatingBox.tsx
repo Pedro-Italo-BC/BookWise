@@ -28,7 +28,7 @@ export function RatingBox({
   hasHeader = true,
 }: RatingBoxProps) {
   return (
-    <div className="flex w-[608px] cursor-pointer flex-col gap-8 rounded-lg bg-gray-700 p-5 pl-6 transition duration-200 ease-in-out hover:bg-gray-600">
+    <div className="flex w-[38rem] cursor-pointer flex-col gap-8 rounded-lg bg-gray-700 p-5 pl-6 transition duration-200 ease-in-out hover:bg-gray-600">
       {hasHeader && (
         <header className="flex justify-between">
           <div className="flex gap-4">
