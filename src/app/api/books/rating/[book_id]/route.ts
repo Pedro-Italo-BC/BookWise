@@ -25,6 +25,9 @@ export async function GET(
       id: true,
       rate: true,
     },
+    orderBy: {
+      created_at: 'desc',
+    },
   })
 
   return NextResponse.json({ ratings })

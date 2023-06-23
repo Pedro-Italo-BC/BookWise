@@ -61,7 +61,7 @@ export function BookButton({
           </Dialog.Trigger>
           <Dialog.Portal>
             <Dialog.Overlay className="data-[state=open]:animate-overlayShow fixed inset-0 bg-black/60" />
-            <Dialog.Content className="data-[state=open]:animate-contentShow fixed right-[0] top-[0] min-h-screen w-[41.25rem]  bg-gray-800 px-12 focus:outline-none">
+            <Dialog.Content className="data-[state=open]:animate-contentShow fixed right-[0] top-[0] h-screen w-[41.25rem] overflow-auto bg-gray-800 px-12 focus:outline-none">
               <div className="flex justify-end pb-4 pt-6">
                 <Dialog.Close asChild>
                   <button className="bg-none">
