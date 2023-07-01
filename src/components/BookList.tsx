@@ -4,6 +4,7 @@ import { getRatingMediaFunction } from '@/utils/getRatingMediaValue'
 import { BookButton } from './BookButton'
 import { useSearchParams } from 'next/navigation'
 import { Category } from '@prisma/client'
+import { filterBooks } from '@/utils/filterBooks'
 
 interface bookResponseData {
   author: string
@@ -30,38 +31,12 @@ export function BookList({ books }: BookListProps) {
   const categorySeachParam = useSearchParams().get('category')
   const searchSeachParam = useSearchParams().get('search')
 
-  function filterBooks(
-    booksValue: bookResponseData[],
-    category: string | null,
-    search: string | null,
-  ): bookResponseData[] {
-    let filteredBooks = [...booksValue]
-
-    if (category && category !== 'Tudo') {
-      filteredBooks = filteredBooks.filter((booksValue) => {
-        const bookCategories = booksValue.categories.map(
-          (categoryObj) => categoryObj.category.name,
-        )
-        return bookCategories.includes(category)
-      })
-    }
-
-    if (search) {
-      const lowerCaseSearch = search.toLowerCase()
-      filteredBooks = filteredBooks.filter((booksValue) => {
-        const lowerCaseName = booksValue.name.toLowerCase()
-        const lowerCaseAuthor = booksValue.author.toLowerCase()
-        return (
-          lowerCaseName.includes(lowerCaseSearch) ||
-          lowerCaseAuthor.includes(lowerCaseSearch)
-        )
-      })
-    }
-
-    return filteredBooks
-  }
-
-  const filteredBooks = filterBooks(books, categorySeachParam, searchSeachParam)
+  const filteredBooks: bookResponseData[] = filterBooks({
+    contentValue: books,
+    category: categorySeachParam,
+    search: searchSeachParam,
+    type: 'Q-book',
+  })
 
   return (
     <ul className="grid w-full grid-cols-3 flex-wrap gap-5">

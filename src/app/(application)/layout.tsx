@@ -2,15 +2,15 @@ import { ReactNode, Suspense } from 'react'
 
 import bkLogo from '../../assets/BookWiseLogo.svg'
 import Image from 'next/image'
-import { NavigationButton } from '@/components/NavigationButton'
 
-import { AiOutlineLineChart, AiOutlineUser } from 'react-icons/ai'
-
-import { GiBinoculars } from 'react-icons/gi'
 import { LoginoutButton } from '@/components/LoginoutButton'
 
-function BA() {
-  return <div>a</div>
+import { NavigationButtonList } from '@/components/NavigationButtonList'
+import { Fallback } from '@/components/Fallback'
+
+export const metadata = {
+  title: 'Book Wise | Login',
+  description: 'Login Page',
 }
 
 export default function AppLayout({ children }: { children: ReactNode }) {
@@ -20,27 +20,13 @@ export default function AppLayout({ children }: { children: ReactNode }) {
         <div className="flex flex-col gap-16">
           <Image src={bkLogo} alt="book wise logo" />
 
-          <nav className="flex flex-col gap-4">
-            <NavigationButton url="/begin">
-              <AiOutlineLineChart size={24} /> Início
-            </NavigationButton>
-
-            <NavigationButton url="/explorer">
-              <GiBinoculars size={24} /> Explorar
-            </NavigationButton>
-
-            <NavigationButton url="/profile">
-              {' '}
-              <AiOutlineUser size={24} />
-              Perfil
-            </NavigationButton>
-          </nav>
+          <NavigationButtonList />
         </div>
 
         <LoginoutButton />
       </aside>
       <div className="ml-[20.5rem] flex-1">
-        <Suspense fallback={<BA />}>{children}</Suspense>
+        <Suspense fallback={<Fallback />}>{children}</Suspense>
       </div>
     </div>
   )

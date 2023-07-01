@@ -6,6 +6,11 @@ import { RatingBox } from '@/components/RatingBox'
 import { BookButton } from '@/components/BookButton'
 import { getRatingMediaFunction } from '@/utils/getRatingMediaValue'
 
+export const metadata = {
+  title: 'Book Wise | Begin',
+  description: 'Página principal',
+}
+
 interface RatingResponseType {
   rateCreatedAt: string
   rate: number

@@ -4,7 +4,15 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { FormEvent, useState } from 'react'
 import { BiSearch } from 'react-icons/bi'
 
-export function SearchBar() {
+interface SearchBarProps {
+  placeholder: string
+  searchWidth?: 'W-default' | 'W-full'
+}
+
+export function SearchBar({
+  placeholder,
+  searchWidth = 'W-default',
+}: SearchBarProps) {
   const [focus, setFocus] = useState(false)
   const [searchValue, setSearchValue] = useState('')
 
@@ -30,9 +38,16 @@ export function SearchBar() {
     setSearchValue('')
   }
 
+  const searchWidthSwitch = {
+    'W-default': 'w-[27.0625rem]',
+    'W-full': 'w-full',
+  }
+
   return (
     <form
-      className={`flex w-[27.0625rem] justify-between rounded-md border px-5 py-3 transition duration-200 ease-in-out ${
+      className={`flex ${
+        searchWidthSwitch[searchWidth]
+      } justify-between rounded-md border px-5 py-3 transition duration-200 ease-in-out ${
         focus ? 'border-green-200' : 'border-gray-500'
       }`}
       onSubmit={handleSearchBooks}
@@ -44,7 +59,7 @@ export function SearchBar() {
         onChange={(data) => setSearchValue(data.target.value)}
         type="text"
         className="flex-1 bg-transparent text-sm font-normal placeholder:text-sm placeholder:font-normal placeholder:text-gray-400 focus:outline-none"
-        placeholder="Buscar livro ou autor"
+        placeholder={placeholder}
       />
       <button type="submit" className="pl-2">
         <BiSearch

@@ -5,6 +5,11 @@ import { api } from '@/lib/axios'
 import { GiBinoculars } from 'react-icons/gi'
 import { BookList } from '@/components/BookList'
 
+export const metadata = {
+  title: 'Book Wise | Explorer',
+  description: 'Página de exploração',
+}
+
 export default async function Explorer() {
   const booksRes = await api.get('/books')
   const booksData = booksRes.data.books
@@ -16,7 +21,7 @@ export default async function Explorer() {
           <GiBinoculars color="#50B2C0" size={26} />
           <p className="text-2xl font-bold text-gray-100">Explorar</p>
         </div>
-        <SearchBar />
+        <SearchBar placeholder="Buscar livro ou autor" />
       </Header>
       <main>
         <header className="mb-12">

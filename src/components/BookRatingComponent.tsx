@@ -55,9 +55,6 @@ export function BookRatingComponent({ bookId }: BookRatingComponentProps) {
         .then((res) => res.data.responseRatingData)
         .catch((err) => console.error(err))
 
-      console.log(rateObject)
-      console.log(ratings[0])
-
       setRatings((state) => [ratingResponse, ...state])
 
       closeCommetingSection()

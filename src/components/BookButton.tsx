@@ -8,6 +8,7 @@ import { BookDialog } from './BookDialog'
 import { RxCross2 } from 'react-icons/rx'
 import { Category } from '@prisma/client'
 import { Suspense } from 'react'
+import { Fallback } from './Fallback'
 
 interface BookButtoProps {
   type?: 'sm' | 'lg'
@@ -70,7 +71,7 @@ export function BookButton({
                 </Dialog.Close>
               </div>
 
-              <Suspense>
+              <Suspense fallback={<Fallback />}>
                 <BookDialog
                   author={author}
                   categories={categories}

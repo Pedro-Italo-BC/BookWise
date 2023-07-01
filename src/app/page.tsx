@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 
 import MainImg from '../assets/MainImageHome.png'
@@ -7,8 +9,17 @@ import GithubIcon from '../assets/GithubIcon.svg'
 import { RxRocket } from 'react-icons/rx'
 
 import { ButtonProvider } from '@/components/ButtonProvider'
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 
 export default function Home() {
+  const session = useSession()
+  const router = useRouter()
+
+  if (session.status === 'authenticated') {
+    router.push('/begin')
+  }
+
   return (
     <main className="flex h-screen items-center p-5">
       <Image
@@ -29,7 +40,7 @@ export default function Home() {
           </p>
         </header>
         <main className="flex w-full flex-col gap-4">
-          <ButtonProvider provider="google">
+          <ButtonProvider provider="google" sessionStatus={session.status}>
             <Image
               src={GoogleIcon}
               alt="Google Icon"
@@ -40,7 +51,7 @@ export default function Home() {
             Entrar com Google
           </ButtonProvider>
 
-          <ButtonProvider provider="github">
+          <ButtonProvider provider="github" sessionStatus={session.status}>
             <Image
               src={GithubIcon}
               alt="Google Icon"
@@ -51,7 +62,7 @@ export default function Home() {
             Entrar com Github
           </ButtonProvider>
 
-          <ButtonProvider provider="visit">
+          <ButtonProvider provider="visit" sessionStatus={session.status}>
             <RxRocket className="text-purple-100" size={32} />
             Acessar como visitante
           </ButtonProvider>
