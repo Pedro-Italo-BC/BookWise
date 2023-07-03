@@ -7,12 +7,15 @@ import { ReactNode } from 'react'
 import Image from 'next/image'
 import { ButtonProvider } from './ButtonProvider'
 import { RxCross2 } from 'react-icons/rx'
+import { useSession } from 'next-auth/react'
 
 interface ProviderButtonDialogPorps {
   children: ReactNode
 }
 
 export function ProviderButtonDialog({ children }: ProviderButtonDialogPorps) {
+  const session = useSession()
+
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>{children}</Dialog.Trigger>
@@ -32,7 +35,10 @@ export function ProviderButtonDialog({ children }: ProviderButtonDialogPorps) {
                 Faça login para deixar sua avaliação
               </p>
               <div className="flex w-[23.25rem] flex-col gap-4">
-                <ButtonProvider provider="google">
+                <ButtonProvider
+                  provider="google"
+                  sessionStatus={session.status}
+                >
                   <Image
                     src={GoogleIcon}
                     alt="Google Icon"
@@ -43,7 +49,10 @@ export function ProviderButtonDialog({ children }: ProviderButtonDialogPorps) {
                   Entrar com Google
                 </ButtonProvider>
 
-                <ButtonProvider provider="github">
+                <ButtonProvider
+                  provider="github"
+                  sessionStatus={session.status}
+                >
                   <Image
                     src={GithubIcon}
                     alt="Google Icon"

@@ -31,12 +31,12 @@ export function BookList({ books }: BookListProps) {
   const categorySeachParam = useSearchParams().get('category')
   const searchSeachParam = useSearchParams().get('search')
 
-  const filteredBooks: bookResponseData[] = filterBooks({
+  const filteredBooks = filterBooks({
     contentValue: books,
     category: categorySeachParam,
     search: searchSeachParam,
     type: 'Q-book',
-  })
+  }) as bookResponseData[]
 
   return (
     <ul className="grid w-full grid-cols-3 flex-wrap gap-5">

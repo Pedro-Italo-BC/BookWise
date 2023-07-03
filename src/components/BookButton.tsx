@@ -72,6 +72,7 @@ export function BookButton({
               </div>
 
               <Suspense fallback={<Fallback />}>
+                {/* @ts-expect-error Server Component */}
                 <BookDialog
                   author={author}
                   categories={categories}

@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { Prisma, PrismaClient, VerificationToken } from '@prisma/client'
 import { Awaitable } from 'next-auth'
 import {

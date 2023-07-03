@@ -93,6 +93,9 @@ export default async function Begin() {
                   title={bookItem.name}
                   type="sm"
                   key={bookItem.id}
+                  categories={[]}
+                  pagesNumber={0}
+                  ratingAmount={0}
                 />
               )
             })}

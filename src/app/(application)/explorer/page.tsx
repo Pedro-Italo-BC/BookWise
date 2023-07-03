@@ -3,6 +3,7 @@ import { Header } from '@/components/Header'
 import { SearchBar } from '@/components/SearchBar'
 import { api } from '@/lib/axios'
 import { GiBinoculars } from 'react-icons/gi'
+
 import { BookList } from '@/components/BookList'
 
 export const metadata = {
@@ -25,6 +26,7 @@ export default async function Explorer() {
       </Header>
       <main>
         <header className="mb-12">
+          {/* @ts-expect-error Server Component */}
           <Categories />
         </header>
 
