@@ -10,11 +10,6 @@ import { useSession } from 'next-auth/react'
 import { UserBox } from '@/components/UserBox'
 import { Fallback } from '@/components/Fallback'
 
-export const metadata = {
-  title: 'Book Wise | Profile',
-  description: 'Página do perfil',
-}
-
 export default function Profile() {
   const router = useRouter()
   const searchSeachParam = useSearchParams().get('search')
