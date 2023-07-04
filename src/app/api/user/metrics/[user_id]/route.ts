@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma'
+import { getUserById, getUserMetricsByUserId } from '@/lib/prisma'
 import { NextResponse } from 'next/server'
 
 interface RatingType {
@@ -22,27 +22,18 @@ export async function GET(
     throw new Error('The user id is missing!')
   }
 
-  const userInfoResponse = await prisma.user.findUnique({
-    where: { id: params.user_id },
-    include: {
-      ratings: {
-        include: {
-          book: {
-            include: {
-              categories: {
-                include: {
-                  category: true,
-                },
-              },
-            },
-          },
-        },
-      },
-    },
-  })
+  const userInfoResponse = await getUserMetricsByUserId(params.user_id)
 
-  if (!userInfoResponse) {
+  const userResponse = await getUserById(params.user_id)
+
+  if (!userResponse) {
     throw new Error('The user does not exist!')
+  }
+
+  const mainUserInfo = {
+    name: userResponse.name,
+    image: userResponse.image,
+    createdAt: userResponse.createdAt,
   }
 
   function getNumberOfBooksAndAuthorsReaded(rating: RatingType[]) {
@@ -106,6 +97,10 @@ export async function GET(
       .category
   }
 
+  if (!userInfoResponse) {
+    return mainUserInfo
+  }
+
   const bookAndAuthorLength = getNumberOfBooksAndAuthorsReaded(
     userInfoResponse.ratings,
   )
@@ -118,9 +113,7 @@ export async function GET(
   const favoriteCategory = getTheFavoriteCategory(userInfoResponse.ratings)
 
   const userMetricsInfo = {
-    name: userInfoResponse.name,
-    createdAt: userInfoResponse.createdAt,
-    image: userInfoResponse.image,
+    ...mainUserInfo,
     readedBooks: bookAndAuthorLength.books,
     readedAuthors: bookAndAuthorLength.authors,
     totalPages,

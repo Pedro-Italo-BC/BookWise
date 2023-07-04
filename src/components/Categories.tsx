@@ -1,11 +1,10 @@
-import { api } from '@/lib/axios'
 import { Category } from '@prisma/client'
 
 import { CategoryButton } from './CategoryButton'
+import { fetchCategories } from '@/lib/prisma'
 
 export async function Categories() {
-  const categories = await api.get('/books/categories')
-  const categoriesData: Category[] = categories.data.categories
+  const categoriesData: Category[] = await fetchCategories()
   return (
     <nav className="flex flex-1 gap-3">
       <CategoryButton category="Tudo" />

@@ -1,10 +1,10 @@
 import { Categories } from '@/components/Categories'
 import { Header } from '@/components/Header'
 import { SearchBar } from '@/components/SearchBar'
-import { api } from '@/lib/axios'
 import { GiBinoculars } from 'react-icons/gi'
 
 import { BookList } from '@/components/BookList'
+import { fetchBooks } from '@/lib/prisma'
 
 export const metadata = {
   title: 'Book Wise | Explorer',
@@ -12,8 +12,7 @@ export const metadata = {
 }
 
 export default async function Explorer() {
-  const booksRes = await api.get('/books')
-  const booksData = booksRes.data.books
+  const booksData = await fetchBooks()
 
   return (
     <main className="w-full pb-12">

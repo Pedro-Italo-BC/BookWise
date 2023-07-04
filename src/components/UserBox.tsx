@@ -55,9 +55,11 @@ export function UserBox() {
               <h1 className="text-center text-xl font-bold text-gray-100">
                 {session.data?.user.name}
               </h1>
-              <p className="text-center text-sm font-normal text-gray-400">{`membro desde ${getYearOfDate(
-                userMetrics?.createdAt ?? '',
-              )}`}</p>
+              <p className="text-center text-sm font-normal text-gray-400">
+                {`membro desde ${
+                  userMetrics ? getYearOfDate(userMetrics.createdAt) : 'nunca'
+                }`}
+              </p>
             </div>
           </header>
 
@@ -69,7 +71,7 @@ export function UserBox() {
                 <BiBookOpen size={32} color="#50B2C0" />
                 <div>
                   <p className="text-base font-bold text-gray-200">
-                    {userMetrics?.totalPages}
+                    {userMetrics?.totalPages ?? 0}
                   </p>
                   <span className="text-sm font-normal text-gray-300">
                     Páginas lidas
@@ -80,7 +82,7 @@ export function UserBox() {
                 <ImBooks size={32} color="#50B2C0" />
                 <div>
                   <p className="text-base font-bold text-gray-200">
-                    {userMetrics?.readedBooks}
+                    {userMetrics?.readedBooks ?? 0}
                   </p>
                   <span className="text-sm font-normal text-gray-300">
                     Livros avaliados
@@ -91,7 +93,7 @@ export function UserBox() {
                 <CgUserList size={32} color="#50B2C0" />
                 <div>
                   <p className="text-base font-bold text-gray-200">
-                    {userMetrics?.readedAuthors}
+                    {userMetrics?.readedAuthors ?? 0}
                   </p>
                   <span className="text-sm font-normal text-gray-300">
                     Autores lidos

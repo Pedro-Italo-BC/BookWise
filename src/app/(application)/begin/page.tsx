@@ -1,10 +1,10 @@
 import { BoxContent } from '@/components/BoxContent'
 import { Header } from '@/components/Header'
-import { api } from '@/lib/axios'
 import { AiOutlineLineChart } from 'react-icons/ai'
 import { RatingBox } from '@/components/RatingBox'
 import { BookButton } from '@/components/BookButton'
 import { getRatingMediaFunction } from '@/utils/getRatingMediaValue'
+import { fetchRatings, getFavoritesBooksQuery } from '@/lib/prisma'
 
 export const metadata = {
   title: 'Book Wise | Begin',
@@ -37,13 +37,10 @@ interface FavoritesBooksType {
 }
 
 export default async function Begin() {
-  const ratingResponse = await api.get('/books/rating')
-  const ratingResponseData: RatingResponseType[] = ratingResponse.data.ratings
-
-  const favoritesBooksResponse = await api.get('/books/favorites')
+  const ratingResponseData = (await fetchRatings()) as RatingResponseType[]
 
   const favoritesBooksData: FavoritesBooksType[] =
-    favoritesBooksResponse.data.favoritesBooksQuery
+    await getFavoritesBooksQuery()
 
   return (
     <main className="mx-auto pb-12">

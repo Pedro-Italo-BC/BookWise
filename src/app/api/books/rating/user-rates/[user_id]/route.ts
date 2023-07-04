@@ -21,7 +21,5 @@ export async function GET(
     },
   })
 
-  console.log(userRatingsList)
-
   return NextResponse.json({ userRatingsList })
 }
